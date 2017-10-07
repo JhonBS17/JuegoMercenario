@@ -2,7 +2,7 @@
 package juegomercenario;
 import java.util.Random;
 
-class Mapa {
+public class Mapa {
     //Se crea una matriz de tipo Casilla, la cual se llenará con los parámetros de la clase Mapa.
     Casilla casilla[][];
     int alto=0;
@@ -13,11 +13,11 @@ class Mapa {
     public Mapa(int alto,int ancho,int cura,int arma){
     this.alto = alto;
     this.ancho = ancho;
-    casilla = new Casilla[this.alto][this.ancho];
+    casilla = new Casilla[alto][ancho];
     //Por medio de un ciclo for se imprime el mapa vacio.
-    for (int i=0;i<this.alto;i++){
-        for (int j=0;j<this.ancho;j++){
-            if (i==0||j==0||i==this.alto-1||j==this.ancho-1){
+    for (int i=0;i<alto;i++){
+        for (int j=0;j<ancho;j++){
+            if (i==0||j==0||i==alto-1||j==ancho-1){
                 //Si la variable i y j se situan en la primera y última fila ó en la primera y última columna, se imprime una CasillaBorde.
                 casilla[i][j]= new CasillaBorde();
             }else{
@@ -25,13 +25,26 @@ class Mapa {
                 casilla[i][j]= new CasillaVacia();
             }
         }
-    }    
+    }
+    /*
+        int p=0;
+        //Se crea un ciclo while que funcione mientras la variable cura sea mayor a 0.
+        while(p<jugador){
+            //Tanto la variable i como j tendra un valor aleatorio dejando una CasillaJugador en cada espacio, excepto en los bordes.
+            int i=rn.nextInt(this.alto-1);
+            int j=rn.nextInt(this.ancho-1);
+            if(casilla[i][j].estaVacia()){
+                casilla[i][j]= new CasillaJugador();
+                p++;
+            }
+        }
+     */   
         int x=0;
         //Se crea un ciclo while que funcione mientras la variable cura sea mayor a 0.
         while(x<cura){
             //Tanto la variable i como j tendra un valor aleatorio dejando una CasillaCura en cada espacio, excepto en los bordes.
-            int i=rn.nextInt(this.alto-1);
-            int j=rn.nextInt(this.ancho-1);
+            int i=rn.nextInt(alto-1);
+            int j=rn.nextInt(ancho-1);
             if(casilla[i][j].estaVacia()){
                 casilla[i][j]= new CasillaCura();
                 x++;
@@ -40,15 +53,15 @@ class Mapa {
         int y=0;
         while(y<arma){
             //Tanto la variable i como j tendra un valor aleatorio dejando una CasillaArma en cada espacio, excepto en los bordes.
-            int i=rn.nextInt(this.alto-1);
-            int j=rn.nextInt(this.ancho-1);
+            int i=rn.nextInt(alto-1);
+            int j=rn.nextInt(ancho-1);
             if (casilla[i][j].estaVacia()){
                 casilla[i][j]= new CasillaArma();
                 y++;
             }
         }
     }
-    //Se crea un metodo mostrar() que imprimirá el mapa con todos los parámetros intrducidos por el usuario.
+    //Se crea un metodo mostrar() que imprimirá el mapa con todos los parámetros introducidos por el usuario.
     void mostrar() {
         for (int i=0; i<alto; i++){
             for (int j=0; j<ancho; j++){

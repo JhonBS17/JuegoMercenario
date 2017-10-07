@@ -10,7 +10,7 @@ public class CasillaCura extends Casilla{
     @Override
     public void muestre() {
        //Este sera el caracter que caracterizará a las curas.
-       System.out.print("+");
+        System.out.print("+");
     }
 
     @Override
