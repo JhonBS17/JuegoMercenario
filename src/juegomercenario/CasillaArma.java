@@ -6,11 +6,8 @@ public class CasillaArma extends Casilla {
 
     public CasillaArma() {
     }
-    
     @Override
-    public void muestre() {
-        //Este sera el caracter que caracterizará a las armas.
-        System.out.print("*");
+    public void muestre(){
     }
     @Override
     public boolean estaVacia() {

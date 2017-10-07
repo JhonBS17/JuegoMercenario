@@ -10,7 +10,7 @@ public class Mapa {
     //Se crea una variable de tipo Random para añadir los caracteres en desorden en el mapa.
     Random rn = new Random();
     //Se crea un constructor para llenar la variable casilla[][] con los datos introducidos por el usuario.
-    public Mapa(int alto,int ancho,int cura,int arma){
+    public Mapa(int alto,int ancho,int jugador,int arma,int armadist,int armacuerpo,int cura,int refugio){
     this.alto = alto;
     this.ancho = ancho;
     casilla = new Casilla[alto][ancho];
@@ -26,23 +26,37 @@ public class Mapa {
             }
         }
     }
-    /*
-        int p=0;
-        //Se crea un ciclo while que funcione mientras la variable cura sea mayor a 0.
-        while(p<jugador){
-            //Tanto la variable i como j tendra un valor aleatorio dejando una CasillaJugador en cada espacio, excepto en los bordes.
-            int i=rn.nextInt(this.alto-1);
-            int j=rn.nextInt(this.ancho-1);
+        int p=1;
+        while(p<=jugador){
+            int i=rn.nextInt(alto-1);
+            int j=rn.nextInt(ancho-1);
             if(casilla[i][j].estaVacia()){
-                casilla[i][j]= new CasillaJugador();
+                casilla[i][j]= new CasillaJugador(p);
                 p++;
             }
+        }    
+        int l=0;
+        while(l<armadist){
+            int i=rn.nextInt(alto-1);
+            int j=rn.nextInt(ancho-1);
+            if (casilla[i][j].estaVacia()){
+                casilla[i][j]= new CasillaArmaDist();
+                l++;
+            }
         }
-     */   
+        int f=0;
+        while(f<armacuerpo){
+            int i=rn.nextInt(alto-1);
+            int j=rn.nextInt(ancho-1);
+            if (casilla[i][j].estaVacia()){
+                casilla[i][j]= new CasillaArmaCuerpo();
+                f++;
+            }
+        }
         int x=0;
         //Se crea un ciclo while que funcione mientras la variable cura sea mayor a 0.
         while(x<cura){
-            //Tanto la variable i como j tendra un valor aleatorio dejando una CasillaCura en cada espacio, excepto en los bordes.
+            //Tanto la variable i como j tendran un valor aleatorio dejando una CasillaCura en cada espacio, excepto en los bordes.
             int i=rn.nextInt(alto-1);
             int j=rn.nextInt(ancho-1);
             if(casilla[i][j].estaVacia()){
@@ -50,16 +64,17 @@ public class Mapa {
                 x++;
             }
         }
-        int y=0;
-        while(y<arma){
-            //Tanto la variable i como j tendra un valor aleatorio dejando una CasillaArma en cada espacio, excepto en los bordes.
+        
+        int d=0;
+        while (d<refugio){
             int i=rn.nextInt(alto-1);
             int j=rn.nextInt(ancho-1);
             if (casilla[i][j].estaVacia()){
-                casilla[i][j]= new CasillaArma();
-                y++;
+                casilla[i][j]= new CasillaRefugio();
+                d++;
             }
         }
+        
     }
     //Se crea un metodo mostrar() que imprimirá el mapa con todos los parámetros introducidos por el usuario.
     void mostrar() {
